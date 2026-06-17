@@ -107,7 +107,7 @@
                 </div>
               {%- when 'material' -%}
                 <div>
-
+                  <p><strong>Material: </strong> {{ product.metafields }}</p>
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -753,7 +753,7 @@
     },
     {
       "type": "material",
-      "name": "material",
+      "name": "material"
     },
     {
       "type": "text",
