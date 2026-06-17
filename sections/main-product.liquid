@@ -107,7 +107,7 @@
                 </div>
               {%- when 'material' -%}
                 <div>
-                  
+
                 </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
@@ -750,6 +750,10 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "material",
+      "name": "material",
     },
     {
       "type": "text",
