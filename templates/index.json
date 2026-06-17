@@ -9,14 +9,14 @@
  */
 {
   "sections": {
-    "custom_liquid_HxNhEe": {
+    "custom_liquid_DFEHfD": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "{% if product.metafields.custom.material %}\n  <div class=\"product-material\">\n    <h3>Material</h3>\n    <p>{{ product.metafields.custom.material.value }}</p>\n  </div>\n{% endif %}",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
+        "custom_liquid": "<div class=\"product-material\">\n  {% if product.metafields.custom.material %}\n    <div class=\"material-info\">\n      <strong>Material:</strong> {{ product.metafields.custom.material }}\n    </div>\n  {% endif %}\n</div>",
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "image_banner": {
@@ -88,7 +88,7 @@
     }
   },
   "order": [
-    "custom_liquid_HxNhEe",
+    "custom_liquid_DFEHfD",
     "image_banner",
     "featured_collection"
   ]
