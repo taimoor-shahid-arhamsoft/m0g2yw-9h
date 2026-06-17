@@ -106,9 +106,11 @@
                   </a>
                 </div>
               {%- when 'material' -%}
-                <div>
-                  <p><strong>Material: </strong> {{ product.metafields.custom.material }}</p>
-                </div>
+                {%- if product.metafields.custom.material != blank -%}
+                  <div {{ block.shopify_attributes }}>
+                    <p><strong>Material: </strong> {{ product.metafields.custom.material }}</p>
+                  </div>
+                {%- endif -%}
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
