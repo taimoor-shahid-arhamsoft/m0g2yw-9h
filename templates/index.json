@@ -11,18 +11,24 @@
   "sections": {
     "j_hero": {
       "type": "j-hero",
-      "custom_css": [],
+      "custom_css": [
+        ".j-hero {display: block;}",
+        "@media (max-width: 989px) {.j-hero {display: none; }}"
+      ],
       "settings": {
         "hero_image": "shopify://shop_images/heritage1.webp",
         "heading": "",
         "subheading": "",
         "button_link": "",
-        "height": 600
+        "height": 500
       }
     },
     "j_hero_VLtEdC": {
       "type": "j-hero",
-      "custom_css": [],
+      "custom_css": [
+        ".j-hero {display: none;}",
+        "@media (max-width: 989px) {.j-hero {display: block; }}"
+      ],
       "name": "J. Hero Banner Mobile",
       "settings": {
         "hero_image": "shopify://shop_images/heritage12.webp",
