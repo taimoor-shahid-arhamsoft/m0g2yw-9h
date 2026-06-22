@@ -1,114 +1,141 @@
 {
   "sections": {
-    "j_homepage": {
-      "type": "j-homepage",
+    "j_hero": {
+      "type": "j-hero",
+      "settings": {
+        "heading": "HERITAGE",
+        "subheading": "COLLECTION",
+        "height": 580
+      }
+    },
+    "j_categories": {
+      "type": "j-category-grid",
       "blocks": {
         "cat-1": {
           "type": "category",
-          "settings": {
-            "label": "KAMEEZ SHALWAR",
-            "link": "/collections/kameez-shalwar"
-          }
+          "settings": { "label": "KAMEEZ SHALWAR", "link": "/collections/kameez-shalwar" }
         },
         "cat-2": {
           "type": "category",
-          "settings": {
-            "label": "UNSTITCHED",
-            "link": "/collections/unstitched"
-          }
+          "settings": { "label": "UNSTITCHED", "link": "/collections/unstitched" }
         },
         "cat-3": {
           "type": "category",
-          "settings": {
-            "label": "KURTA TROUSER",
-            "link": "/collections/kurta-trouser"
-          }
+          "settings": { "label": "KURTA TROUSER", "link": "/collections/kurta-trouser" }
         },
         "cat-4": {
           "type": "category",
-          "settings": {
-            "label": "WAISTCOAT",
-            "link": "/collections/waistcoat"
-          }
+          "settings": { "label": "WAISTCOAT", "link": "/collections/waistcoat" }
         },
         "cat-5": {
           "type": "category",
-          "settings": {
-            "label": "FORMAL KURTA",
-            "link": "/collections/formal-kurta"
-          }
+          "settings": { "label": "FORMAL KURTA", "link": "/collections/formal-kurta" }
         },
         "cat-6": {
           "type": "category",
-          "settings": {
-            "label": "FOOTWEAR",
-            "link": "/collections/footwear"
-          }
+          "settings": { "label": "FOOTWEAR", "link": "/collections/footwear" }
+        }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4", "cat-5", "cat-6"],
+      "settings": {
+        "heading": "SHOP BY CATEGORY",
+        "columns": 6
+      }
+    },
+    "j_col_banner": {
+      "type": "j-collection-banner",
+      "settings": {
+        "heading": "MONOCHROME",
+        "subheading": "COLLECTION",
+        "height": 520
+      }
+    },
+    "j_trending": {
+      "type": "j-trending-products",
+      "blocks": {
+        "tab-1": {
+          "type": "tab",
+          "settings": { "label": "Ready To Wear" }
         },
+        "tab-2": {
+          "type": "tab",
+          "settings": { "label": "Unstitched" }
+        },
+        "tab-3": {
+          "type": "tab",
+          "settings": { "label": "Groom Collection" }
+        }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3"],
+      "settings": {
+        "heading": "TRENDING",
+        "products_to_show": 6,
+        "columns": 6
+      }
+    },
+    "j_split": {
+      "type": "j-split-banner",
+      "settings": {
+        "button_label": "SHOP NOW"
+      }
+    },
+    "j_featured": {
+      "type": "j-featured-collections",
+      "blocks": {
         "feat-1": {
-          "type": "featured_collection_item",
+          "type": "item",
           "settings": {
-            "col_name": "AUTOGRAPH SERIES",
+            "name": "AUTOGRAPH SERIES",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/autograph-series"
           }
         },
         "feat-2": {
-          "type": "featured_collection_item",
+          "type": "item",
           "settings": {
-            "col_name": "CEREMONIAL",
+            "name": "CEREMONIAL",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/ceremonial"
           }
-        },
-        "small-1": {
-          "type": "small_banner",
+        }
+      },
+      "block_order": ["feat-1", "feat-2"]
+    },
+    "j_three_col": {
+      "type": "j-three-col-banners",
+      "blocks": {
+        "banner-1": {
+          "type": "item",
           "settings": {
             "title": "HERITAGE EDIT '26",
             "link": "/collections/heritage-edit"
           }
         },
-        "small-2": {
-          "type": "small_banner",
+        "banner-2": {
+          "type": "item",
           "settings": {
             "title": "EXPRESSION SERIES",
             "link": "/collections/expression-series"
           }
         },
-        "small-3": {
-          "type": "small_banner",
+        "banner-3": {
+          "type": "item",
           "settings": {
             "title": "LIKE FATHER LIKE SON",
             "link": "/collections/like-father-like-son"
           }
         }
       },
-      "block_order": [
-        "cat-1",
-        "cat-2",
-        "cat-3",
-        "cat-4",
-        "cat-5",
-        "cat-6",
-        "feat-1",
-        "feat-2",
-        "small-1",
-        "small-2",
-        "small-3"
-      ],
-      "settings": {
-        "hero_subtitle": "HERITAGE",
-        "hero_title": "COLLECTION",
-        "banner_title": "MONOCHROME",
-        "banner_subtitle": "COLLECTION",
-        "trending_tab_1": "Ready To Wear",
-        "trending_tab_2": "Unstitched",
-        "trending_tab_3": "Groom Collection",
-        "split_btn_label": "SHOP NOW"
-      }
+      "block_order": ["banner-1", "banner-2", "banner-3"]
     }
   },
   "order": [
-    "j_homepage"
+    "j_hero",
+    "j_categories",
+    "j_col_banner",
+    "j_trending",
+    "j_split",
+    "j_featured",
+    "j_three_col"
   ]
 }

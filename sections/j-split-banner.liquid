@@ -1,0 +1,143 @@
+{%- assign img1 = section.settings.image_left -%}
+{%- assign img2 = section.settings.image_right -%}
+
+{%- if img1 != blank or img2 != blank -%}
+
+<style>
+  #shopify-section-{{ section.id }} .j-split {
+    position: relative;
+    background: #f5f2ee;
+    font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif);
+  }
+  #shopify-section-{{ section.id }} .j-split__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #shopify-section-{{ section.id }} .j-split__img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .j-split__img img,
+  #shopify-section-{{ section.id }} .j-split__img .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .j-split__cta {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  #shopify-section-{{ section.id }} .j-split__btn {
+    display: inline-block;
+    padding: 11px 32px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1.5px solid #fff;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    font-family: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  #shopify-section-{{ section.id }} .j-split__btn:hover {
+    background: #fff;
+    color: #1a1a1a;
+  }
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .j-split__images { grid-template-columns: 1fr; }
+    #shopify-section-{{ section.id }} .j-split__cta { display: none; }
+  }
+</style>
+
+<div class="j-split">
+  <div class="j-split__images">
+    <div class="j-split__img">
+      {%- if img1 != blank -%}
+        {{
+          img1
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.button_label,
+            widths: '450, 750, 900',
+            sizes: '50vw'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    <div class="j-split__img">
+      {%- if img2 != blank -%}
+        {{
+          img2
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.button_label,
+            widths: '450, 750, 900',
+            sizes: '50vw'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.button_label != blank -%}
+    <div class="j-split__cta">
+      <a
+        href="{{ section.settings.button_link | default: '/collections/all' }}"
+        class="j-split__btn"
+      >{{ section.settings.button_label }}</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "J. Split Banner",
+  "tag": "section",
+  "class": "j-section-split",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "J. Split Banner"
+    }
+  ]
+}
+{% endschema %}

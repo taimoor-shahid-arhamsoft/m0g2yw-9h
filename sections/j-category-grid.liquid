@@ -1,0 +1,169 @@
+{%- if section.blocks.size > 0 -%}
+
+<style>
+  #shopify-section-{{ section.id }} .j-cat-grid {
+    padding: 36px 20px;
+    background: #fff;
+    font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif);
+  }
+  #shopify-section-{{ section.id }} .j-cat-grid__inner { max-width: 1200px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .j-cat-grid__heading {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    color: #1a1a1a;
+  }
+  #shopify-section-{{ section.id }} .j-cat-grid__list {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #shopify-section-{{ section.id }} .j-cat-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  #shopify-section-{{ section.id }} .j-cat-item__img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0ece6;
+  }
+  #shopify-section-{{ section.id }} .j-cat-item__img img,
+  #shopify-section-{{ section.id }} .j-cat-item__img .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  #shopify-section-{{ section.id }} .j-cat-item:hover .j-cat-item__img img { transform: scale(1.04); }
+  #shopify-section-{{ section.id }} .j-cat-item__label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+    color: #1a1a1a;
+  }
+  @media (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .j-cat-grid__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .j-cat-grid__list { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    #shopify-section-{{ section.id }} .j-cat-grid { padding: 24px 12px; }
+    #shopify-section-{{ section.id }} .j-cat-grid__list { gap: 6px; }
+  }
+</style>
+
+<div class="j-cat-grid">
+  <div class="j-cat-grid__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="j-cat-grid__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <ul class="j-cat-grid__list">
+      {%- for block in section.blocks -%}
+        <li class="j-cat-item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link | default: '/collections/all' }}">
+            <div class="j-cat-item__img">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: block.settings.label,
+                    widths: '200, 300, 400',
+                    sizes: '(min-width: 1200px) 200px, (min-width: 768px) 25vw, 33vw'
+                }}
+              {%- else -%}
+                {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <span class="j-cat-item__label">{{ block.settings.label | default: 'CATEGORY' }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "J. Category Grid",
+  "tag": "section",
+  "class": "j-section-categories",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "SHOP BY CATEGORY"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "KAMEEZ SHALWAR"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "J. Category Grid",
+      "blocks": [
+        { "type": "category", "settings": { "label": "KAMEEZ SHALWAR" } },
+        { "type": "category", "settings": { "label": "UNSTITCHED" } },
+        { "type": "category", "settings": { "label": "KURTA TROUSER" } },
+        { "type": "category", "settings": { "label": "WAISTCOAT" } },
+        { "type": "category", "settings": { "label": "FORMAL KURTA" } },
+        { "type": "category", "settings": { "label": "FOOTWEAR" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
