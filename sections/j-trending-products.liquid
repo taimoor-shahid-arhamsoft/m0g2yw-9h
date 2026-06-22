@@ -67,7 +67,7 @@
   #shopify-section-{{ section.id }} .j-trending__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
-    gap: 16px;
+    gap: 5px;
   }
   #shopify-section-{{ section.id }} .j-prod-card a {
     display: flex;
@@ -114,7 +114,6 @@
   }
   @media (max-width: 480px) {
     #shopify-section-{{ section.id }} .j-trending { padding: 24px 12px 32px; }
-    #shopify-section-{{ section.id }} .j-trending__grid { gap: 10px; }
   }
 </style>
 
