@@ -13,15 +13,84 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Contact",
+            "phone": "+92 2137 170 445",
+            "hours": "(MON - SAT: 9:30AM - 10:00PM | SUN : 11AM - 8PM)",
+            "email": "eshop@junaidjamshed.com"
+          }
+        },
+        "company": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Company",
+            "link_1_label": "About Us",
+            "link_1_url": "/pages/about-us",
+            "link_2_label": "Careers",
+            "link_2_url": "/pages/careers",
+            "link_3_label": "Store Locator",
+            "link_3_url": "/pages/store-locator",
+            "link_4_label": "Corporate",
+            "link_4_url": "/pages/corporate"
+          }
+        },
+        "customer-support": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Support",
+            "link_1_label": "Contact Us",
+            "link_1_url": "/pages/contact",
+            "link_2_label": "Delivery & Orders",
+            "link_2_url": "/pages/delivery-orders",
+            "link_3_label": "Returns & Exchanges",
+            "link_3_url": "/pages/returns-exchanges",
+            "link_4_label": "Track My Order",
+            "link_4_url": "/pages/track-order",
+            "link_5_label": "Payment Guide",
+            "link_5_url": "/pages/payment-guide",
+            "link_6_label": "Fabric Glossary",
+            "link_6_url": "/pages/fabric-glossary"
+          }
+        },
+        "connect": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Connect",
+            "link_1_label": "Facebook",
+            "link_1_url": "https://www.facebook.com/",
+            "link_2_label": "X",
+            "link_2_url": "https://www.x.com/",
+            "link_3_label": "Instagram",
+            "link_3_url": "https://www.instagram.com/",
+            "link_4_label": "YouTube",
+            "link_4_url": "https://www.youtube.com/",
+            "link_5_label": "Pinterest",
+            "link_5_url": "https://www.pinterest.com/",
+            "link_6_label": "LinkedIn",
+            "link_6_url": "https://www.linkedin.com/"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Sign Up For Our Newsletter",
+            "subtext": "<p>By providing your email, you agree to receive marketing emails and accept our <a href=\"/policies/privacy-policy\">Privacy Policy</a> and <a href=\"/policies/terms-of-service\">Terms</a>.</p>",
+            "show_payment": true
+          }
+        }
+      },
+      "block_order": [
+        "contact",
+        "company",
+        "customer-support",
+        "connect",
+        "newsletter"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 36,
