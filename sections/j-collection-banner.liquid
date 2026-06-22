@@ -19,18 +19,6 @@
     object-fit: fill;
     display: block;
   }
-  #shopify-section-{{ section.id }} .j-col-banner__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    text-decoration: none;
-  }
   #shopify-section-{{ section.id }} .j-col-banner__heading {
     font-size: clamp(52px, 10vw, 120px);
     font-weight: 900;
@@ -66,12 +54,6 @@
     }}
   {%- else -%}
     {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-  {%- endif -%}
-
-  {%- if section.settings.link != blank -%}
-    {% comment %} <a href="{{ section.settings.link }}" class="j-col-banner__overlay"> {% endcomment %}
-  {%- else -%}
-    <div class="j-col-banner__overlay">
   {%- endif -%}
 
     {%- if section.settings.heading != blank -%}
