@@ -6,7 +6,7 @@
     background: #fff;
     font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif);
   }
-  #shopify-section-{{ section.id }} .j-trending__inner { max-width: 1220px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .j-trending__inner { max-width: 100%; margin: 0 auto; }
   #shopify-section-{{ section.id }} .j-trending__header {
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@
     flex-wrap: wrap;
   }
   #shopify-section-{{ section.id }} .j-trending__title {
-    font-size: 11px;
+    font-size: 20px;
     letter-spacing: 3px;
     font-weight: 700;
     text-transform: uppercase;
@@ -31,10 +31,11 @@
     overflow-x: auto;
   }
   #shopify-section-{{ section.id }} .j-trending__tab {
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    padding: 6px 16px;
+    padding: 6px 0px;
+    margin: 0px 16px;
     border: none;
     background: none;
     cursor: pointer;
@@ -42,7 +43,6 @@
     font-weight: 500;
     font-family: inherit;
     border-bottom: 2px solid transparent;
-    margin-bottom: -15px;
     white-space: nowrap;
     transition: color 0.2s;
   }
@@ -52,7 +52,7 @@
   }
   #shopify-section-{{ section.id }} .j-trending__tab:hover { color: #1a1a1a; }
   #shopify-section-{{ section.id }} .j-trending__see-all {
-    font-size: 9px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
@@ -67,7 +67,7 @@
   #shopify-section-{{ section.id }} .j-trending__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
-    gap: 16px;
+    gap: 5px;
   }
   #shopify-section-{{ section.id }} .j-prod-card a {
     display: flex;
@@ -114,7 +114,6 @@
   }
   @media (max-width: 480px) {
     #shopify-section-{{ section.id }} .j-trending { padding: 24px 12px 32px; }
-    #shopify-section-{{ section.id }} .j-trending__grid { gap: 10px; }
   }
 </style>
 

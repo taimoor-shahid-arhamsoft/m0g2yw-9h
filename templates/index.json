@@ -11,7 +11,7 @@
         "heading": "",
         "subheading": "",
         "button_link": "",
-        "height": 500
+        "height": 540
       }
     },
     "j_hero_VLtEdC": {
@@ -90,12 +90,31 @@
     },
     "j_col_banner": {
       "type": "j-collection-banner",
+      "custom_css": [
+        ".j-col-banner {display: block;}",
+        "@media (max-width: 989px) {.j-col-banner {display: none; }}"
+      ],
       "settings": {
-        "image": "shopify://shop_images/hire-hero-bg.png",
-        "heading": "MONOCHROME",
-        "subheading": "COLLECTION",
+        "image": "shopify://shop_images/008.webp",
+        "heading": "",
+        "subheading": "",
         "link": "",
-        "height": 520
+        "height": 560
+      }
+    },
+    "j_collection_banner_aAG3hM": {
+      "type": "j-collection-banner",
+      "custom_css": [
+        ".j-col-banner {display: none;}",
+        "@media (max-width: 989px) {.j-col-banner {display: block; }}"
+      ],
+      "name": "J. Collection Banner mobile",
+      "settings": {
+        "image": "shopify://shop_images/009.webp",
+        "heading": "",
+        "subheading": "",
+        "link": "",
+        "height": 380
       }
     },
     "j_trending": {
@@ -148,6 +167,7 @@
         "feat-1": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/18.webp",
             "name": "AUTOGRAPH SERIES",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/autograph-series"
@@ -156,6 +176,7 @@
         "feat-2": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/17.webp",
             "name": "CEREMONIAL",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/ceremonial"
@@ -174,6 +195,7 @@
         "banner-1": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/heritage_edit_0dba63fc-01d7-47f9-afdc-ffb93e430186.webp",
             "title": "HERITAGE EDIT '26",
             "link": "/collections/heritage-edit"
           }
@@ -181,6 +203,7 @@
         "banner-2": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/expression.webp",
             "title": "EXPRESSION SERIES",
             "link": "/collections/expression-series"
           }
@@ -188,6 +211,7 @@
         "banner-3": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/14.webp",
             "title": "LIKE FATHER LIKE SON",
             "link": "/collections/like-father-like-son"
           }
@@ -206,6 +230,7 @@
     "j_hero_VLtEdC",
     "j_categories",
     "j_col_banner",
+    "j_collection_banner_aAG3hM",
     "j_trending",
     "j_split",
     "j_featured",

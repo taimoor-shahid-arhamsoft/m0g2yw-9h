@@ -6,9 +6,9 @@
     background: #fff;
     font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif);
   }
-  #shopify-section-{{ section.id }} .j-cat-grid__inner { max-width: 1200px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .j-cat-grid__inner { max-width: 100%; margin: 0 auto; }
   #shopify-section-{{ section.id }} .j-cat-grid__heading {
-    font-size: 11px;
+    font-size: 20px;
     letter-spacing: 2px;
     font-weight: 600;
     text-transform: uppercase;
@@ -18,7 +18,7 @@
   #shopify-section-{{ section.id }} .j-cat-grid__list {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
-    gap: 12px;
+    gap: 5px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -46,7 +46,7 @@
   }
   #shopify-section-{{ section.id }} .j-cat-item:hover .j-cat-item__img img { transform: scale(1.04); }
   #shopify-section-{{ section.id }} .j-cat-item__label {
-    font-size: 9px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
@@ -60,11 +60,10 @@
     }
   }
   @media (max-width: 768px) {
-    #shopify-section-{{ section.id }} .j-cat-grid__list { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    #shopify-section-{{ section.id }} .j-cat-grid__list { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 480px) {
     #shopify-section-{{ section.id }} .j-cat-grid { padding: 24px 12px; }
-    #shopify-section-{{ section.id }} .j-cat-grid__list { gap: 6px; }
   }
 </style>
 
