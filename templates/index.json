@@ -176,6 +176,7 @@
         "feat-1": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/18.webp",
             "name": "AUTOGRAPH SERIES",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/autograph-series"
@@ -184,6 +185,7 @@
         "feat-2": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/17.webp",
             "name": "CEREMONIAL",
             "subtitle": "FEATURED COLLECTION",
             "link": "/collections/ceremonial"
