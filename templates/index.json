@@ -1,9 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "j_hero": {
       "type": "j-hero",
+      "custom_css": [],
       "settings": {
         "hero_image": "shopify://shop_images/heritage1.webp",
+        "heading": "",
+        "subheading": "",
+        "button_link": "",
+        "height": 600
+      }
+    },
+    "j_hero_VLtEdC": {
+      "type": "j-hero",
+      "custom_css": [],
+      "name": "J. Hero Banner Mobile",
+      "settings": {
+        "hero_image": "shopify://shop_images/heritage12.webp",
         "heading": "",
         "subheading": "",
         "button_link": "",
@@ -184,6 +206,7 @@
   },
   "order": [
     "j_hero",
+    "j_hero_VLtEdC",
     "j_categories",
     "j_col_banner",
     "j_trending",
