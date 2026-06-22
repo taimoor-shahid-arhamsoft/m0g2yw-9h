@@ -99,6 +99,25 @@
     },
     "j_col_banner": {
       "type": "j-collection-banner",
+      "custom_css": [
+        ".j-col-banner {display: block;}",
+        "@media (max-width: 989px) {.j-col-banner {display: none; }}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/008.webp",
+        "heading": "",
+        "subheading": "",
+        "link": "",
+        "height": 560
+      }
+    },
+    "j_collection_banner_aAG3hM": {
+      "type": "j-collection-banner",
+      "custom_css": [
+        ".j-col-banner {display: none;}",
+        "@media (max-width: 989px) {.j-col-banner {display: block; }}"
+      ],
+      "name": "J. Collection Banner mobile",
       "settings": {
         "image": "shopify://shop_images/008.webp",
         "heading": "",
@@ -215,6 +234,7 @@
     "j_hero_VLtEdC",
     "j_categories",
     "j_col_banner",
+    "j_collection_banner_aAG3hM",
     "j_trending",
     "j_split",
     "j_featured",
