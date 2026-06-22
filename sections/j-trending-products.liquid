@@ -1,0 +1,291 @@
+{%- assign limit = section.settings.products_to_show | default: 6 -%}
+
+<style>
+  #shopify-section-{{ section.id }} .j-trending {
+    padding: 36px 20px 44px;
+    background: #fff;
+    font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif);
+  }
+  #shopify-section-{{ section.id }} .j-trending__inner { max-width: 1220px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .j-trending__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  #shopify-section-{{ section.id }} .j-trending__title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+    color: #1a1a1a;
+  }
+  #shopify-section-{{ section.id }} .j-trending__tabs {
+    display: flex;
+    flex: 1;
+    overflow-x: auto;
+  }
+  #shopify-section-{{ section.id }} .j-trending__tab {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    font-weight: 500;
+    font-family: inherit;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -15px;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  #shopify-section-{{ section.id }} .j-trending__tab[aria-selected="true"] {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+  }
+  #shopify-section-{{ section.id }} .j-trending__tab:hover { color: #1a1a1a; }
+  #shopify-section-{{ section.id }} .j-trending__see-all {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-left: auto;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  #shopify-section-{{ section.id }} .j-trending__panel[aria-hidden="true"] { display: none; }
+  #shopify-section-{{ section.id }} .j-trending__panel[aria-hidden="false"] { display: block; }
+  #shopify-section-{{ section.id }} .j-trending__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: 16px;
+  }
+  #shopify-section-{{ section.id }} .j-prod-card a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  #shopify-section-{{ section.id }} .j-prod-card__img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0ece6;
+    margin-bottom: 10px;
+  }
+  #shopify-section-{{ section.id }} .j-prod-card__img img,
+  #shopify-section-{{ section.id }} .j-prod-card__img .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  #shopify-section-{{ section.id }} .j-prod-card:hover .j-prod-card__img img { transform: scale(1.04); }
+  #shopify-section-{{ section.id }} .j-prod-card__name {
+    font-size: 8.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+  #shopify-section-{{ section.id }} .j-prod-card__price {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #555;
+    margin: 0;
+  }
+  @media (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .j-trending__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .j-trending__grid { grid-template-columns: repeat(2, 1fr); }
+    #shopify-section-{{ section.id }} .j-trending__header { gap: 12px; }
+  }
+  @media (max-width: 480px) {
+    #shopify-section-{{ section.id }} .j-trending { padding: 24px 12px 32px; }
+    #shopify-section-{{ section.id }} .j-trending__grid { gap: 10px; }
+  }
+</style>
+
+<div class="j-trending">
+  <div class="j-trending__inner">
+
+    <div class="j-trending__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="j-trending__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="j-trending__tabs" role="tablist" aria-label="{{ section.settings.heading }}">
+          {%- for block in section.blocks -%}
+            <button
+              class="j-trending__tab"
+              type="button"
+              role="tab"
+              id="j-tab-{{ section.id }}-{{ block.id }}"
+              aria-controls="j-panel-{{ section.id }}-{{ block.id }}"
+              aria-selected="{%- if forloop.first -%}true{%- else -%}false{%- endif -%}"
+              {{ block.shopify_attributes }}
+            >{{ block.settings.label | default: 'Collection' }}</button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.see_all_link != blank -%}
+        <a href="{{ section.settings.see_all_link }}" class="j-trending__see-all">SEE ALL</a>
+      {%- endif -%}
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- assign col = collections[block.settings.collection] -%}
+      <div
+        class="j-trending__panel"
+        id="j-panel-{{ section.id }}-{{ block.id }}"
+        role="tabpanel"
+        aria-labelledby="j-tab-{{ section.id }}-{{ block.id }}"
+        aria-hidden="{%- if forloop.first -%}false{%- else -%}true{%- endif -%}"
+      >
+        <div class="j-trending__grid">
+          {%- if col != blank and col.products_count > 0 -%}
+            {%- for product in col.products limit: limit -%}
+              <div class="j-prod-card">
+                <a href="{{ product.url }}">
+                  <div class="j-prod-card__img">
+                    {%- if product.featured_image -%}
+                      {{
+                        product.featured_image
+                        | image_url: width: 400
+                        | image_tag:
+                          loading: 'lazy',
+                          alt: product.title,
+                          widths: '200, 300, 400',
+                          sizes: '(min-width: 1200px) 200px, (min-width: 768px) 25vw, 50vw'
+                      }}
+                    {%- else -%}
+                      {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </div>
+                  <p class="j-prod-card__name">{{ product.title | upcase | truncate: 40 }}</p>
+                  <p class="j-prod-card__price">{{ product.price | money }}</p>
+                </a>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for i in (1..limit) -%}
+              <div class="j-prod-card">
+                <div class="j-prod-card__img">
+                  {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                <p class="j-prod-card__name">SAMPLE PRODUCT</p>
+                <p class="j-prod-card__price">PKR 7,990</p>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var sectionEl = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionEl) return;
+    var tabs = sectionEl.querySelectorAll('.j-trending__tab');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var panelId = this.getAttribute('aria-controls');
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+        sectionEl.querySelectorAll('.j-trending__panel').forEach(function (p) {
+          p.setAttribute('aria-hidden', 'true');
+        });
+        this.setAttribute('aria-selected', 'true');
+        var panel = sectionEl.querySelector('#' + panelId);
+        if (panel) panel.setAttribute('aria-hidden', 'false');
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "J. Trending Products",
+  "tag": "section",
+  "class": "j-section-trending",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "TRENDING"
+    },
+    {
+      "type": "url",
+      "id": "see_all_link",
+      "label": "\"See All\" link"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products per tab",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 4,
+      "max": 6,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Ready To Wear"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "J. Trending Products",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "Ready To Wear" } },
+        { "type": "tab", "settings": { "label": "Unstitched" } },
+        { "type": "tab", "settings": { "label": "Groom Collection" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

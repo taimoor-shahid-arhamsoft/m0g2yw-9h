@@ -9,8 +9,16 @@
  */
 {
   "sections": {
-    "j_homepage": {
-      "type": "j-homepage",
+    "j_hero": {
+      "type": "j-hero",
+      "settings": {
+        "heading": "HERITAGE",
+        "subheading": "COLLECTION",
+        "height": 580
+      }
+    },
+    "j_categories": {
+      "type": "j-category-grid",
       "blocks": {
         "cat-1": {
           "type": "category",
@@ -53,43 +61,6 @@
             "label": "FOOTWEAR",
             "link": "/collections/footwear"
           }
-        },
-        "feat-1": {
-          "type": "featured_collection_item",
-          "settings": {
-            "col_name": "AUTOGRAPH SERIES",
-            "subtitle": "FEATURED COLLECTION",
-            "link": "/collections/autograph-series"
-          }
-        },
-        "feat-2": {
-          "type": "featured_collection_item",
-          "settings": {
-            "col_name": "CEREMONIAL",
-            "subtitle": "FEATURED COLLECTION",
-            "link": "/collections/ceremonial"
-          }
-        },
-        "small-1": {
-          "type": "small_banner",
-          "settings": {
-            "title": "HERITAGE EDIT '26",
-            "link": "/collections/heritage-edit"
-          }
-        },
-        "small-2": {
-          "type": "small_banner",
-          "settings": {
-            "title": "EXPRESSION SERIES",
-            "link": "/collections/expression-series"
-          }
-        },
-        "small-3": {
-          "type": "small_banner",
-          "settings": {
-            "title": "LIKE FATHER LIKE SON",
-            "link": "/collections/like-father-like-son"
-          }
         }
       },
       "block_order": [
@@ -98,26 +69,126 @@
         "cat-3",
         "cat-4",
         "cat-5",
-        "cat-6",
-        "feat-1",
-        "feat-2",
-        "small-1",
-        "small-2",
-        "small-3"
+        "cat-6"
       ],
       "settings": {
-        "hero_subtitle": "HERITAGE",
-        "hero_title": "COLLECTION",
-        "banner_title": "MONOCHROME",
-        "banner_subtitle": "COLLECTION",
-        "trending_tab_1": "Ready To Wear",
-        "trending_tab_2": "Unstitched",
-        "trending_tab_3": "Groom Collection",
-        "split_btn_label": "SHOP NOW"
+        "heading": "SHOP BY CATEGORY",
+        "columns": 6
       }
+    },
+    "j_col_banner": {
+      "type": "j-collection-banner",
+      "settings": {
+        "heading": "MONOCHROME",
+        "subheading": "COLLECTION",
+        "height": 520
+      }
+    },
+    "j_trending": {
+      "type": "j-trending-products",
+      "blocks": {
+        "tab-1": {
+          "type": "tab",
+          "settings": {
+            "label": "Ready To Wear"
+          }
+        },
+        "tab-2": {
+          "type": "tab",
+          "settings": {
+            "label": "Unstitched"
+          }
+        },
+        "tab-3": {
+          "type": "tab",
+          "settings": {
+            "label": "Groom Collection"
+          }
+        }
+      },
+      "block_order": [
+        "tab-1",
+        "tab-2",
+        "tab-3"
+      ],
+      "settings": {
+        "heading": "TRENDING",
+        "products_to_show": 6,
+        "columns": 6
+      }
+    },
+    "j_split": {
+      "type": "j-split-banner",
+      "settings": {
+        "button_label": "SHOP NOW"
+      }
+    },
+    "j_featured": {
+      "type": "j-featured-collections",
+      "blocks": {
+        "feat-1": {
+          "type": "item",
+          "settings": {
+            "name": "AUTOGRAPH SERIES",
+            "subtitle": "FEATURED COLLECTION",
+            "link": "/collections/autograph-series"
+          }
+        },
+        "feat-2": {
+          "type": "item",
+          "settings": {
+            "name": "CEREMONIAL",
+            "subtitle": "FEATURED COLLECTION",
+            "link": "/collections/ceremonial"
+          }
+        }
+      },
+      "block_order": [
+        "feat-1",
+        "feat-2"
+      ],
+      "settings": {}
+    },
+    "j_three_col": {
+      "type": "j-three-col-banners",
+      "blocks": {
+        "banner-1": {
+          "type": "item",
+          "settings": {
+            "title": "HERITAGE EDIT '26",
+            "link": "/collections/heritage-edit"
+          }
+        },
+        "banner-2": {
+          "type": "item",
+          "settings": {
+            "title": "EXPRESSION SERIES",
+            "link": "/collections/expression-series"
+          }
+        },
+        "banner-3": {
+          "type": "item",
+          "settings": {
+            "title": "LIKE FATHER LIKE SON",
+            "link": "/collections/like-father-like-son"
+          }
+        }
+      },
+      "block_order": [
+        "banner-1",
+        "banner-2",
+        "banner-3"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "j_homepage"
+    "j_hero",
+    "j_categories",
+    "j_col_banner",
+    "j_trending",
+    "j_split",
+    "j_featured",
+    "j_three_col"
   ]
 }
