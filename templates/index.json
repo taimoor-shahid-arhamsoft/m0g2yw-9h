@@ -12,9 +12,11 @@
     "j_hero": {
       "type": "j-hero",
       "settings": {
-        "heading": "HERITAGE",
-        "subheading": "COLLECTION",
-        "height": 580
+        "hero_image": "shopify://shop_images/heritage1.webp",
+        "heading": "",
+        "subheading": "",
+        "button_link": "",
+        "height": 540
       }
     },
     "j_categories": {
@@ -79,8 +81,10 @@
     "j_col_banner": {
       "type": "j-collection-banner",
       "settings": {
+        "image": "shopify://shop_images/hire-hero-bg.png",
         "heading": "MONOCHROME",
         "subheading": "COLLECTION",
+        "link": "",
         "height": 520
       }
     },
@@ -90,19 +94,22 @@
         "tab-1": {
           "type": "tab",
           "settings": {
-            "label": "Ready To Wear"
+            "label": "Ready To Wear",
+            "collection": ""
           }
         },
         "tab-2": {
           "type": "tab",
           "settings": {
-            "label": "Unstitched"
+            "label": "Unstitched",
+            "collection": ""
           }
         },
         "tab-3": {
           "type": "tab",
           "settings": {
-            "label": "Groom Collection"
+            "label": "Groom Collection",
+            "collection": ""
           }
         }
       },
@@ -113,6 +120,7 @@
       ],
       "settings": {
         "heading": "TRENDING",
+        "see_all_link": "",
         "products_to_show": 6,
         "columns": 6
       }
@@ -120,7 +128,8 @@
     "j_split": {
       "type": "j-split-banner",
       "settings": {
-        "button_label": "SHOP NOW"
+        "button_label": "SHOP NOW",
+        "button_link": ""
       }
     },
     "j_featured": {
