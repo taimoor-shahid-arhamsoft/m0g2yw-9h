@@ -105,6 +105,12 @@
                     </h2>
                   </a>
                 </div>
+              {%- when 'material' -%}
+                {%- if product.metafields.custom.material != blank -%}
+                  <div {{ block.shopify_attributes }}>
+                    <p><strong>Material: </strong> {{ product.metafields.custom.material }}</p>
+                  </div>
+                {%- endif -%}
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
@@ -746,6 +752,10 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "material",
+      "name": "Material"
     },
     {
       "type": "text",
