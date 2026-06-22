@@ -101,8 +101,8 @@
       "type": "j-collection-banner",
       "settings": {
         "image": "shopify://shop_images/008.webp",
-        "heading": "MONOCHROME",
-        "subheading": "COLLECTION",
+        "heading": "",
+        "subheading": "",
         "link": "",
         "height": 520
       }
