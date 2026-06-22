@@ -1,0 +1,734 @@
+{% comment %}
+  J. Brand Homepage Section — replicates the J. (Junaid Jamshed) homepage layout
+{% endcomment %}
+
+<style>
+  /* ─── Reset / Base ─────────────────────────────────────── */
+  .j-hp * { box-sizing: border-box; }
+  .j-hp a { text-decoration: none; color: inherit; }
+  .j-hp img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .j-hp .placeholder-svg { width: 100%; height: 100%; }
+
+  /* ─── Typography ────────────────────────────────────────── */
+  .j-hp { font-family: var(--font-body-family, 'Helvetica Neue', Arial, sans-serif); color: #1a1a1a; }
+  .j-hp-section-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    color: #1a1a1a;
+  }
+
+  /* ─── 1. Hero Banner ────────────────────────────────────── */
+  .j-hp-hero {
+    position: relative;
+    width: 100%;
+    height: 580px;
+    overflow: hidden;
+    background: #2b2b2b;
+  }
+  .j-hp-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .j-hp-hero .placeholder-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .j-hp-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+  }
+  .j-hp-hero__content {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    color: #fff;
+    line-height: 1;
+  }
+  .j-hp-hero__subtitle {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+  }
+  .j-hp-hero__title {
+    font-size: 18px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin: 4px 0 0;
+  }
+
+  /* ─── 2. Shop By Category ───────────────────────────────── */
+  .j-hp-categories { padding: 36px 20px; background: #fff; }
+  .j-hp-categories__inner { max-width: 1200px; margin: 0 auto; }
+  .j-hp-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .j-hp-category-item a { display: flex; flex-direction: column; align-items: center; }
+  .j-hp-category-item__img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0ece6;
+  }
+  .j-hp-category-item__img-wrap img,
+  .j-hp-category-item__img-wrap .placeholder-svg {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+  }
+  .j-hp-category-item:hover .j-hp-category-item__img-wrap img { transform: scale(1.04); }
+  .j-hp-category-item__label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+    color: #1a1a1a;
+  }
+
+  /* ─── 3. Full-width Collection Banner ───────────────────── */
+  .j-hp-banner {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .j-hp-banner__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .j-hp-banner .placeholder-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .j-hp-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .j-hp-banner__title {
+    font-size: clamp(52px, 10vw, 120px);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+  }
+  .j-hp-banner__subtitle {
+    font-size: clamp(12px, 2vw, 18px);
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 300;
+    margin: 8px 0 0;
+  }
+
+  /* ─── 4. Trending ───────────────────────────────────────── */
+  .j-hp-trending { padding: 36px 20px 44px; background: #fff; }
+  .j-hp-trending__inner { max-width: 1220px; margin: 0 auto; }
+  .j-hp-trending__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .j-hp-trending__title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .j-hp-tabs { display: flex; gap: 0; flex: 1; }
+  .j-hp-tab {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-family: inherit;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -15px;
+  }
+  .j-hp-tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+  .j-hp-tab:hover { color: #1a1a1a; }
+  .j-hp-see-all {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-left: auto;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  .j-hp-trending__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .j-hp-product-card a { display: flex; flex-direction: column; }
+  .j-hp-product-card__img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0ece6;
+    margin-bottom: 10px;
+  }
+  .j-hp-product-card__img-wrap img,
+  .j-hp-product-card__img-wrap .placeholder-svg {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+  }
+  .j-hp-product-card:hover .j-hp-product-card__img-wrap img { transform: scale(1.04); }
+  .j-hp-product-card__name {
+    font-size: 8.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+  .j-hp-product-card__price {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #555;
+    margin: 0;
+  }
+
+  /* ─── 5. Split Banner ───────────────────────────────────── */
+  .j-hp-split { position: relative; background: #f5f2ee; }
+  .j-hp-split__images { display: grid; grid-template-columns: 1fr 1fr; }
+  .j-hp-split__img-wrap { aspect-ratio: 4/3; overflow: hidden; }
+  .j-hp-split__img-wrap img,
+  .j-hp-split__img-wrap .placeholder-svg { width: 100%; height: 100%; object-fit: cover; }
+  .j-hp-split__cta {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .j-hp-btn {
+    display: inline-block;
+    padding: 11px 32px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1.5px solid #fff;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .j-hp-btn:hover { background: #fff; color: #1a1a1a; }
+
+  /* ─── 6. Two-column Featured Collections ───────────────── */
+  .j-hp-two-col { display: grid; grid-template-columns: 1fr 1fr; }
+  .j-hp-featured-col {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: #1a1a1a;
+  }
+  .j-hp-featured-col__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .j-hp-featured-col .placeholder-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .j-hp-featured-col:hover .j-hp-featured-col__img { transform: scale(1.04); }
+  .j-hp-featured-col__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 36px 36px 40px;
+  }
+  .j-hp-featured-col__name {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 4px;
+  }
+  .j-hp-featured-col__sub {
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin: 0 0 14px;
+    font-weight: 400;
+  }
+  .j-hp-shop-now {
+    font-size: 8.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    display: inline-block;
+  }
+  .j-hp-shop-now:hover { opacity: 0.75; }
+
+  /* ─── 7. Three-column Small Banners ─────────────────────── */
+  .j-hp-three-col { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .j-hp-small-banner {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: #1a1a1a;
+  }
+  .j-hp-small-banner__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .j-hp-small-banner .placeholder-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .j-hp-small-banner:hover .j-hp-small-banner__img { transform: scale(1.04); }
+  .j-hp-small-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 45%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 28px 32px;
+  }
+  .j-hp-small-banner__title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .j-hp-trending__grid { grid-template-columns: repeat(4, 1fr); }
+    .j-hp-categories__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .j-hp-hero { height: 380px; }
+    .j-hp-hero__content { bottom: 28px; left: 24px; }
+    .j-hp-hero__subtitle { font-size: 22px; }
+    .j-hp-hero__title { font-size: 12px; }
+    .j-hp-categories__grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .j-hp-banner { height: 320px; }
+    .j-hp-trending__grid { grid-template-columns: repeat(2, 1fr); }
+    .j-hp-trending__header { gap: 12px; }
+    .j-hp-tabs { overflow-x: auto; }
+    .j-hp-two-col { grid-template-columns: 1fr; }
+    .j-hp-featured-col { aspect-ratio: 16/9; }
+    .j-hp-three-col { grid-template-columns: 1fr; }
+    .j-hp-small-banner { aspect-ratio: 16/9; }
+    .j-hp-split__images { grid-template-columns: 1fr; }
+    .j-hp-split__cta { display: none; }
+  }
+  @media (max-width: 480px) {
+    .j-hp-categories { padding: 24px 12px; }
+    .j-hp-categories__grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .j-hp-trending { padding: 24px 12px 32px; }
+    .j-hp-trending__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+</style>
+
+<div class="j-hp">
+
+  {%- comment -%}── 1. HERO BANNER ──{%- endcomment -%}
+  <section class="j-hp-hero">
+    {%- if section.settings.hero_image != blank -%}
+      {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', class: 'j-hp-hero__img', alt: section.settings.hero_subtitle }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+    <div class="j-hp-hero__overlay"></div>
+    <div class="j-hp-hero__content">
+      <p class="j-hp-hero__subtitle">{{ section.settings.hero_subtitle | default: 'HERITAGE' }}</p>
+      <p class="j-hp-hero__title">{{ section.settings.hero_title | default: 'COLLECTION' }}</p>
+    </div>
+  </section>
+
+  {%- comment -%}── 2. SHOP BY CATEGORY ──{%- endcomment -%}
+  {%- assign category_blocks = section.blocks | where: 'type', 'category' -%}
+  {%- if category_blocks.size > 0 -%}
+    <section class="j-hp-categories">
+      <div class="j-hp-categories__inner">
+        <h2 class="j-hp-section-title">SHOP BY CATEGORY</h2>
+        <div class="j-hp-categories__grid">
+          {%- for block in category_blocks -%}
+            <div class="j-hp-category-item" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.link | default: '/collections/all' }}">
+                <div class="j-hp-category-item__img-wrap">
+                  {%- if block.settings.image != blank -%}
+                    {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.label }}
+                  {%- else -%}
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <p class="j-hp-category-item__label">{{ block.settings.label | default: 'CATEGORY' }}</p>
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- comment -%}── 3. FULL-WIDTH COLLECTION BANNER ──{%- endcomment -%}
+  <section class="j-hp-banner">
+    {%- if section.settings.banner_image != blank -%}
+      {{ section.settings.banner_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: 'j-hp-banner__img', alt: section.settings.banner_title }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+    <div class="j-hp-banner__overlay">
+      <h2 class="j-hp-banner__title">{{ section.settings.banner_title | default: 'MONOCHROME' }}</h2>
+      <p class="j-hp-banner__subtitle">{{ section.settings.banner_subtitle | default: 'COLLECTION' }}</p>
+    </div>
+  </section>
+
+  {%- comment -%}── 4. TRENDING PRODUCTS ──{%- endcomment -%}
+  <section class="j-hp-trending">
+    <div class="j-hp-trending__inner">
+      <div class="j-hp-trending__header">
+        <h2 class="j-hp-trending__title">TRENDING</h2>
+        <div class="j-hp-tabs">
+          {%- assign tab_labels = section.settings.trending_tab_1 | append: '||' | append: section.settings.trending_tab_2 | append: '||' | append: section.settings.trending_tab_3 | split: '||' -%}
+          {%- for tab in tab_labels -%}
+            {%- if tab != blank -%}
+              <button class="j-hp-tab{% if forloop.first %} active{% endif %}" type="button">{{ tab }}</button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <a href="{{ section.settings.trending_see_all | default: '/collections/all' }}" class="j-hp-see-all">SEE ALL</a>
+      </div>
+
+      <div class="j-hp-trending__grid">
+        {%- assign trending_col = collections[section.settings.trending_collection] -%}
+        {%- if trending_col != blank and trending_col.products_count > 0 -%}
+          {%- for product in trending_col.products limit: 6 -%}
+            <div class="j-hp-product-card">
+              <a href="{{ product.url }}">
+                <div class="j-hp-product-card__img-wrap">
+                  {%- if product.featured_image -%}
+                    {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title }}
+                  {%- else -%}
+                    {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <p class="j-hp-product-card__name">{{ product.title | upcase | truncate: 40 }}</p>
+                <p class="j-hp-product-card__price">{{ product.price | money }}</p>
+              </a>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            <div class="j-hp-product-card">
+              <div class="j-hp-product-card__img-wrap">
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <p class="j-hp-product-card__name">SAMPLE PRODUCT</p>
+              <p class="j-hp-product-card__price">PKR 7,990</p>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}── 5. SPLIT BANNER ──{%- endcomment -%}
+  {%- if section.settings.split_image_1 != blank or section.settings.split_image_2 != blank -%}
+    <section class="j-hp-split">
+      <div class="j-hp-split__images">
+        <div class="j-hp-split__img-wrap">
+          {%- if section.settings.split_image_1 != blank -%}
+            {{ section.settings.split_image_1 | image_url: width: 900 | image_tag: loading: 'lazy', alt: 'Collection' }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="j-hp-split__img-wrap">
+          {%- if section.settings.split_image_2 != blank -%}
+            {{ section.settings.split_image_2 | image_url: width: 900 | image_tag: loading: 'lazy', alt: 'Collection' }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="j-hp-split__cta">
+        <a href="{{ section.settings.split_link | default: '/collections/all' }}" class="j-hp-btn">
+          {{ section.settings.split_btn_label | default: 'SHOP NOW' }}
+        </a>
+      </div>
+    </section>
+  {%- endif -%}
+
+  {%- comment -%}── 6. TWO-COLUMN FEATURED COLLECTIONS ──{%- endcomment -%}
+  {%- assign featured_blocks = section.blocks | where: 'type', 'featured_collection_item' -%}
+  {%- if featured_blocks.size > 0 -%}
+    <section class="j-hp-two-col">
+      {%- for block in featured_blocks limit: 2 -%}
+        <div class="j-hp-featured-col" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'j-hp-featured-col__img', alt: block.settings.col_name }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+          <div class="j-hp-featured-col__overlay">
+            <p class="j-hp-featured-col__name">{{ block.settings.col_name | default: 'AUTOGRAPH SERIES' }}</p>
+            <p class="j-hp-featured-col__sub">{{ block.settings.subtitle | default: 'FEATURED COLLECTION' }}</p>
+            <a href="{{ block.settings.link | default: '/collections/all' }}" class="j-hp-shop-now">SHOP NOW</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </section>
+  {%- endif -%}
+
+  {%- comment -%}── 7. THREE-COLUMN SMALL BANNERS ──{%- endcomment -%}
+  {%- assign small_blocks = section.blocks | where: 'type', 'small_banner' -%}
+  {%- if small_blocks.size > 0 -%}
+    <section class="j-hp-three-col">
+      {%- for block in small_blocks limit: 3 -%}
+        <div class="j-hp-small-banner" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'j-hp-small-banner__img', alt: block.settings.title }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+          <div class="j-hp-small-banner__overlay">
+            <p class="j-hp-small-banner__title">{{ block.settings.title | default: 'COLLECTION' }}</p>
+            <a href="{{ block.settings.link | default: '/collections/all' }}" class="j-hp-shop-now">SHOP NOW</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </section>
+  {%- endif -%}
+
+</div>
+
+<script>
+  (function() {
+    var tabs = document.querySelectorAll('.j-hp-tab');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "J. Homepage",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Hero large text",
+      "default": "HERITAGE",
+      "info": "Large bold text (e.g. HERITAGE)"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero subtitle text",
+      "default": "COLLECTION",
+      "info": "Smaller spaced text below (e.g. COLLECTION)"
+    },
+    {
+      "type": "header",
+      "content": "Monochrome Collection Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner large title",
+      "default": "MONOCHROME"
+    },
+    {
+      "type": "text",
+      "id": "banner_subtitle",
+      "label": "Banner subtitle",
+      "default": "COLLECTION"
+    },
+    {
+      "type": "header",
+      "content": "Trending Products"
+    },
+    {
+      "type": "collection",
+      "id": "trending_collection",
+      "label": "Trending collection"
+    },
+    {
+      "type": "text",
+      "id": "trending_tab_1",
+      "label": "Tab 1 label",
+      "default": "Ready To Wear"
+    },
+    {
+      "type": "text",
+      "id": "trending_tab_2",
+      "label": "Tab 2 label",
+      "default": "Unstitched"
+    },
+    {
+      "type": "text",
+      "id": "trending_tab_3",
+      "label": "Tab 3 label",
+      "default": "Groom Collection"
+    },
+    {
+      "type": "url",
+      "id": "trending_see_all",
+      "label": "See All link"
+    },
+    {
+      "type": "header",
+      "content": "Split Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "split_image_1",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "split_image_2",
+      "label": "Right image"
+    },
+    {
+      "type": "url",
+      "id": "split_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "split_btn_label",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "KAMEEZ SHALWAR"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "featured_collection_item",
+      "name": "Featured Collection",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "col_name",
+          "label": "Collection name",
+          "default": "AUTOGRAPH SERIES"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "FEATURED COLLECTION"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "small_banner",
+      "name": "Small Banner (3-col)",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "HERITAGE EDIT '26"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "J. Homepage",
+      "blocks": [
+        { "type": "category", "settings": { "label": "KAMEEZ SHALWAR" } },
+        { "type": "category", "settings": { "label": "UNSTITCHED" } },
+        { "type": "category", "settings": { "label": "KURTA TROUSER" } },
+        { "type": "category", "settings": { "label": "WAISTCOAT" } },
+        { "type": "category", "settings": { "label": "FORMAL KURTA" } },
+        { "type": "category", "settings": { "label": "FOOTWEAR" } },
+        { "type": "featured_collection_item", "settings": { "col_name": "AUTOGRAPH SERIES", "subtitle": "FEATURED COLLECTION" } },
+        { "type": "featured_collection_item", "settings": { "col_name": "CEREMONIAL", "subtitle": "FEATURED COLLECTION" } },
+        { "type": "small_banner", "settings": { "title": "HERITAGE EDIT '26" } },
+        { "type": "small_banner", "settings": { "title": "EXPRESSION SERIES" } },
+        { "type": "small_banner", "settings": { "title": "LIKE FATHER LIKE SON" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
